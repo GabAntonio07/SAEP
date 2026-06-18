@@ -23,10 +23,9 @@ class EncomendaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('id_rastreio')
+                Forms\Components\Select::make('id_rastreio') 
                     ->required()
-                    ->relationship(['Estoque', 'nome'])
-                    ->numeric(),
+                    ->relationship('estoque', 'nome'),
                 Forms\Components\Select::make('tipo')
                     ->required()
                     ->options([

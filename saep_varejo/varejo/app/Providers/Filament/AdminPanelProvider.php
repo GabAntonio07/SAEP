@@ -29,6 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::hex('#2563EB'), 
+                'Doce' => Color::hex('#f80000'),
+                'Salgado' => Color::hex('#ffbb00'),
+                'Bebida' => Color::hex('#15b800'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

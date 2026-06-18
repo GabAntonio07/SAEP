@@ -50,12 +50,19 @@ class LigaResource extends Resource
                         ->numeric()
                         ->required(),                    
                         Forms\Components\TextInput::make('tipo_liga')
-                        ->label('Tipo de Liga')->required()->maxLength(100),
+                        ->label('Tipo de Liga')
+                        ->required()
+                        ->maxLength(100),
                         Forms\Components\TextInput::make('ponto_fusao')
-                        ->label('Ponto de Fusão (°C)')->numeric()->required(),
+                        ->label('Ponto de Fusão (°C)')
+                        ->numeric()
+                        ->required(),
                         Forms\Components\TextInput::make('peso_toneladas')
-                        ->label('Peso (Toneladas)')->numeric()->required(),
-                    ])->columns(2)
+                        ->label('Peso (Toneladas)')
+                        ->numeric()
+                        ->required(),
+                    ])
+                    ->columns(2)
             ]);
     }
 

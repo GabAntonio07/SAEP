@@ -47,8 +47,13 @@ class EstoqueResource extends Resource
                 Forms\Components\TextInput::make('peso')
                     ->required()
                     ->numeric(),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
+                Forms\Components\Select::make('status')
+                    ->required()
+                    ->options([
+                        'Processando' => 'processamento',
+                        'Recebido' => 'recebido',
+                        'Expedido' => 'expedido',
+                    ]),
             ]);
     }
 
@@ -73,7 +78,10 @@ class EstoqueResource extends Resource
                     ->color(function($record){
                         if ($record->quantidade == 0){
                             return 'danger';
-                        }
+                        } if ($record->quantidade <= $record->nivel_minimo){
+                            return 'warning';
+                        } 
+                        return 'success';
                     }),
                 Tables\Columns\TextColumn::make('nivel_minimo')
                     ->numeric()
@@ -83,8 +91,18 @@ class EstoqueResource extends Resource
                 Tables\Columns\TextColumn::make('peso')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable()
+                    ->badge()
+                    ->color(function($record){
+                        if($record->status === 'Processando'){
+                            return 'danger';
+                        } if($record->status === 'Expedido'){
+                            return 'warning';
+                        } if ($record->status === 'Recebido'){
+                            return 'success';
+                        }
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

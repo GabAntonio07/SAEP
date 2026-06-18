@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Encomenda extends Model
 {
@@ -15,6 +16,6 @@ class Encomenda extends Model
 
     public function Estoque(): BelongsTo
     {
-        return $this->BelongsTo (Estoque::class, 'codigo');
+        return $this->belongsTo (Estoque::class, 'id_rastreio', 'id');
     }
 }

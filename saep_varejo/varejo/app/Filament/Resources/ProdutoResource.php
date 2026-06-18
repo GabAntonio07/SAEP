@@ -88,7 +88,14 @@ class ProdutoResource extends Resource
                     ->label('Nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('categoria')
-                    ->label('Categoria'),
+                    ->label('Categoria')
+                    ->badge()
+                    ->color(fn(string $state): string => match
+                    ($state){
+                        'Bebida' => 'Bebida',
+                        'Salgado' => 'Salgado',
+                        'Doce' => 'Doce',
+                    }),
                 Tables\Columns\TextColumn::make('preco')
                     ->label('Preço')
                     ->money('BRL'),
