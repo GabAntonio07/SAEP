@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('encomendas', function (Blueprint $table) {
             $table->id();
             $table->integer('id_rastreio')->constrained('estoques')->cascadeOnDelete();
-            $table->boolean('tipo');
+            $table->string('tipo');
             $table->string('destinatario');
             $table->date('data');
             $table->timestamps();

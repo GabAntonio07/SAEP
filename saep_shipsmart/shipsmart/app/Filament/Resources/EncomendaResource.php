@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EncomendaResource\Pages;
 use App\Filament\Resources\EncomendaResource\RelationManagers;
 use App\Models\Encomenda;
+use App\Models\Estoque;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -47,8 +48,17 @@ class EncomendaResource extends Resource
                 Tables\Columns\TextColumn::make('id_rastreio')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('tipo')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('tipo')
+                    ->searchable()
+                    ->badge()
+                    ->color(function($record){
+                        if($record-> tipo === 'Entrada'){
+                            return "success";
+                        } if ($record-> tipo === 'Saída'){
+                            return "danger";
+                        } return "warning";
+
+                    }),
                 Tables\Columns\TextColumn::make('destinatario')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('data')
